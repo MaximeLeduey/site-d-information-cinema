@@ -36,18 +36,8 @@ $client = get_client();
 get_film_by_id();
 
 
-function get_Infos(array $array) {
-    foreach($array as $film) {
-        $image = $film->poster_path;
-        $title = $film->original_title;
-        $overview = $film->overview;
-        echo "$title $image $overview<br>";
-    }
-}
 
 
-
-get_Infos(get_film_by_id());
 
 
 
