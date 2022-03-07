@@ -1,0 +1,36 @@
+header, footer {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+}
+
+header {
+    background-color: crimson;
+}
+
+footer {
+    background-color: rgb(26, 22, 22);
+    color: white;
+}
+
+.movie-card {
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 50px 0;
+}
+
+.card-footer {
+    height: 180px;
+    overflow: hidden;
+}
+
+.container-fluid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

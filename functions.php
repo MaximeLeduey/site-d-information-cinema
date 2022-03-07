@@ -21,7 +21,6 @@ function get_client() {
 function make_request(Client $client,string $url) {
     $response = $client->get($url);
     $result = $response->getBody()->getContents();
-    // pretty_print_r($result);
     $resultObject = json_decode($result);
     $result = $resultObject->results;
     return $result;
