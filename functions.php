@@ -22,17 +22,22 @@ function make_request(Client $client,string $url) {
     $response = $client->get($url);
     $result = $response->getBody()->getContents();
     $resultObject = json_decode($result);
-    $result = $resultObject->results;
+    $result = $resultObject;
     return $result;
 }
 
-function get_film_by_id() {
+function get_films() {
     $client = get_client();
-    return make_request($client, requestStart.'/movie/popular/'.api_key);
+    return make_request($client, requestStart.'/movie/popular/'.api_key.requestLanguage)->results;
 }
 $client = get_client();
 
-get_film_by_id();
+function get_film_by_id(int $id) {
+    $client = get_client();
+    return make_request($client, requestStart.'/movie/'.$id.api_key.requestLanguage);
+}
+
+get_films();
 
 
 

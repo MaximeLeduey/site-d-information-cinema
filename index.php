@@ -17,10 +17,11 @@ require('functions.php');
 <body>
     <div class="container-fluid">
     <?php
-        foreach(get_film_by_id() as $film) {
+        foreach(get_films() as $film) {
             $image = $film->poster_path;
             $title = $film->original_title;
             $overview = $film->overview;
+            $id = $film->id;
             require('./composants/card.php');
         }
     ?>
