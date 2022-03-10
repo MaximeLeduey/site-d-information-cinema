@@ -26,7 +26,6 @@ function make_request(Client $client,string $url) {
     return $result;
 }
 
-$page = 1;
 function get_page() {
     if ($_GET['page'] == 1) {
         return false;
@@ -36,10 +35,27 @@ function get_page() {
     }
 }
 
+function has_search() {
+    return isset($_GET['search']) && !empty($_GET['search']);
+}
+
+
+function get_search() {
+    $search = $_GET['search'];
+    $search = "&query=$search";
+    return $search;
+}
+
 function get_films(int $page) {
     $pageUrl = "&page=$page";
     $client = get_client();
-    return make_request($client, requestStart.'/movie/popular/'.api_key.requestLanguage.$pageUrl)->results;
+    if (has_search()) {
+        $currentSearch = get_search();
+        return make_request($client, requestStart.'/search/movie/'.api_key.$pageUrl.$currentSearch)->results;
+    }
+    else {
+        return make_request($client, requestStart.'/movie/popular/'.api_key.requestLanguage.$pageUrl)->results;
+    }
 }
 $client = get_client();
 
@@ -47,16 +63,6 @@ function get_film_by_id(int $id) {
     $client = get_client();
     return make_request($client, requestStart.'/movie/'.$id.api_key.requestLanguage);
 }
-
-
-
-
-
-
-
-
-
-
 
 
 ?>

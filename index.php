@@ -1,6 +1,9 @@
 <?php 
 require_once('header.php');
 require('functions.php');
+if(!isset($_GET['page'])) {
+    $_GET['page'] = 1;
+}
 $nextPage = $_GET['page'] +1;
 $prevPage = $_GET['page'] -1;
 ?>
