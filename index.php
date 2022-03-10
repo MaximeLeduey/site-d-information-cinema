@@ -1,6 +1,8 @@
 <?php 
 require_once('header.php');
 require('functions.php');
+$nextPage = $_GET['page'] +1;
+$prevPage = $_GET['page'] -1;
 ?>
 
 
@@ -17,7 +19,8 @@ require('functions.php');
 <body>
     <div class="container-fluid">
     <?php
-        foreach(get_films() as $film) {
+        get_page();
+        foreach(get_films($_GET['page']) as $film) {
             $image = $film->poster_path;
             $title = $film->original_title;
             $overview = $film->overview;
@@ -26,6 +29,14 @@ require('functions.php');
         }
     ?>
     </div>
+    <form class="pages" actions="" method="get">
+        <?php 
+            if (get_page()) {
+                echo "<button type='submit' name='page' value=$prevPage>page précédente</button>";
+            }  
+        ?>
+        <button type="submit" name="page" value=<?= $nextPage ?>>page suivante</button>
+    </form>
 <?php  require_once('footer.php') ?>
 </body>
 </html>
